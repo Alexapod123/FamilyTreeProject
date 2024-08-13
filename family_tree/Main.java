@@ -1,11 +1,16 @@
 package family_tree;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        String nameFile = "familyTree.txt";
         FamilyTree tree = testTree();
         System.out.println(tree);
+        FileHandler fh = new FileHandler();
+        fh.saveFamilyTree(nameFile,tree.getTree());
+        System.out.println(fh.downloadFamilyTree(nameFile));
     }
 
     static FamilyTree testTree() {
