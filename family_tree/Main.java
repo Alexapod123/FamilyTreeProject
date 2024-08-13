@@ -9,7 +9,7 @@ public class Main {
         FamilyTree tree = testTree();
         System.out.println(tree);
         FileHandler fh = new FileHandler();
-        fh.saveFamilyTree(nameFile,tree.getTree());
+        fh.saveFamilyTree(nameFile, tree.getTree());
         System.out.println(fh.downloadFamilyTree(nameFile));
     }
 
