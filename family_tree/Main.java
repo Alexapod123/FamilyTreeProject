@@ -7,10 +7,12 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         String nameFile = "familyTree.txt";
         FamilyTree tree = testTree();
-        System.out.println(tree);
+        // System.out.println(tree);
         FileHandler fh = new FileHandler();
-        fh.saveFamilyTree(nameFile, tree.getTree());
-        System.out.println(fh.downloadFamilyTree(nameFile));
+        // fh.saveFamilyTree(nameFile, tree.getTree());
+        // System.out.println(fh.downloadFamilyTree(nameFile));
+        System.out.println(getInfoFamily());
+        
     }
 
     static FamilyTree testTree() {
@@ -28,5 +30,15 @@ public class Main {
         grandMother.addChild(alena);
         tree.add(grandMother);
         return tree;
+    }
+
+    public static String getInfoFamily(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Члены семьи: ");
+        for (Human human : (testTree())) {
+            sb.append(human);
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
