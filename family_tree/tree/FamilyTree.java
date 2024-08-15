@@ -66,10 +66,11 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return humanList.toString();
     }
 
-    public void sortByName(){
+    public void sortByName() {
         humanList.sort(new HumanComparatorByName());
     }
-    public void sortByAge(){
+
+    public void sortByAge() {
         humanList.sort(new HumanComparatorByAge());
     }
 

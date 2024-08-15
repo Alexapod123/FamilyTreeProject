@@ -40,7 +40,7 @@ public class Main {
         return tree;
     }
 
-    public static String getInfoFamily(){
+    public static String getInfoFamily() {
         StringBuilder sb = new StringBuilder();
         sb.append("Члены семьи: ");
         sb.append("\n");
