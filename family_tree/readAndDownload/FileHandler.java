@@ -1,4 +1,4 @@
-package family_tree;
+package family_tree.readAndDownload;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+
+import family_tree.human.Human;
+import family_tree.tree.FamilyTree;
 
 
 public class FileHandler implements  Write {

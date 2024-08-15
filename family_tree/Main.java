@@ -3,6 +3,11 @@ package family_tree;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import family_tree.human.Gender;
+import family_tree.human.Human;
+import family_tree.readAndDownload.FileHandler;
+import family_tree.tree.FamilyTree;
+
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         String nameFile = "familyTree.txt";
@@ -12,7 +17,10 @@ public class Main {
         // fh.saveFamilyTree(nameFile, tree.getTree());
         // System.out.println(fh.downloadFamilyTree(nameFile));
         System.out.println(getInfoFamily());
-        
+        tree.sortByName();
+        System.out.println(tree);
+        tree.sortByAge();
+        System.out.println(tree);
     }
 
     static FamilyTree testTree() {
@@ -35,6 +43,7 @@ public class Main {
     public static String getInfoFamily(){
         StringBuilder sb = new StringBuilder();
         sb.append("Члены семьи: ");
+        sb.append("\n");
         for (Human human : (testTree())) {
             sb.append(human);
             sb.append("\n");

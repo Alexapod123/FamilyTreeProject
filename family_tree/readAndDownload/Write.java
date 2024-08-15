@@ -1,7 +1,10 @@
-package family_tree;
+package family_tree.readAndDownload;
 
 import java.io.IOException;
 import java.util.List;
+
+import family_tree.human.Human;
+import family_tree.tree.FamilyTree;
 
 public interface Write {
 
