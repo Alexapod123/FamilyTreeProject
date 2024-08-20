@@ -7,12 +7,14 @@ import java.util.List;
 public interface GeneralTree <G> extends Serializable{
     String getName();
     LocalDate getBirthDate();
+    LocalDate getDeathDate();
     G getFather();
     G getMother();
     boolean addChild (G human);
     boolean addParent (G human);
     List <G> getChildren();
     List <G> getParents();
+    int getAge();
 
 
 }

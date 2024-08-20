@@ -10,10 +10,10 @@ import family_tree.comparators.HumanComparatorByName;
 import family_tree.human.Human;
 import family_tree.human.HumanIterator;
 
-public class FamilyTree implements Serializable, Iterable<Human> {
-    private final List<Human> humanList;
+public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Iterable<E> {
+    private final List<E> humanList;
 
-    public FamilyTree(List<Human> humanList) {
+    public FamilyTree(List<E> humanList) {
         this.humanList = humanList;
     }
 
@@ -21,7 +21,7 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         humanList = new ArrayList<>();
     }
 
-    public boolean add(Human human) {
+    public boolean add(E human) {
         if (human == null) {
             return false;
         }
@@ -36,21 +36,21 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return false;
     }
 
-    private void addToParents(Human human) {
-        for (Human parent : human.getParents()) {
+    private void addToParents(E human) {
+        for (E parent : human.getParents()) {
             parent.addChild(human);
         }
     }
 
-    private void addToChildren(Human human) {
-        for (Human child : human.getChildren()) {
+    private void addToChildren(E human) {
+        for (E child : human.getChildren()) {
             child.addParent(human);
         }
     }
 
-    public List<Human> getByName(String name) {
-        List<Human> res = new ArrayList<>();
-        for (Human human : humanList) {
+    public List<E> getByName(String name) {
+        List<E> res = new ArrayList<>();
+        for (E human : humanList) {
             if (human.getName().equals(name)) {
                 res.add(human);
             }
@@ -58,7 +58,7 @@ public class FamilyTree implements Serializable, Iterable<Human> {
         return res;
     }
 
-    public List<Human> getTree() {
+    public List<E> getTree() {
         return humanList;
     }
 
@@ -75,7 +75,7 @@ public class FamilyTree implements Serializable, Iterable<Human> {
     }
 
     @Override
-    public Iterator<Human> iterator() {
-        return new HumanIterator(humanList);
+    public Iterator<E> iterator() {
+        return (Iterator<E>) new HumanIterator(humanList);
     }
 }

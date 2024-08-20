@@ -11,7 +11,7 @@ import family_tree.tree.FamilyTree;
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         String nameFile = "familyTree.txt";
-        FamilyTree tree = testTree();
+        FamilyTree<Human> tree = testTree();
         // System.out.println(tree);
         FileHandler fh = new FileHandler();
         // fh.saveFamilyTree(nameFile, tree.getTree());
@@ -23,8 +23,8 @@ public class Main {
         System.out.println(tree);
     }
 
-    static FamilyTree testTree() {
-        FamilyTree tree = new FamilyTree();
+    static FamilyTree<Human> testTree() {
+        FamilyTree<Human> tree = new FamilyTree<>();
 
         Human vanya = new Human("Ivan", Gender.Male, LocalDate.of(1975, 6, 02), null, null, null);
         Human alena = new Human("Alena", Gender.Female, LocalDate.of(1980, 7, 03), null, null, null);
