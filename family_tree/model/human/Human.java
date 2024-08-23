@@ -1,12 +1,15 @@
-package family_tree.human;
+package family_tree.model.human;
+
 // import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
-import family_tree.tree.GeneralTree;
+import family_tree.model.tree.GeneralTree;
 
 public class Human implements GeneralTree<Human> {
+    private int id;
+
     private String name;
     private Gender gender;
     private LocalDate birthDate;
@@ -14,36 +17,66 @@ public class Human implements GeneralTree<Human> {
     private Human mother;
     private Human father;
     private List<Human> children;
-   
 
-    public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human mother, Human father){
-        this.name= name;
+    public Human(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Human mother, Human father,
+            List<Human> children) {
+        this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
         this.mother = mother;
         this.father = father;
-        children = new ArrayList<>();
+        this.children = new ArrayList<>();
+    }
+    
+
+    public Human(String name, Gender gender, LocalDate birthDate) {
+        this.name = name;
+        this.gender = gender;
+        this.birthDate = birthDate;
     }
 
-    public String getName(){
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setDeathDate(LocalDate deathDate) {
+        this.deathDate = deathDate;
+    }
+
+    public String getName() {
         return name;
     }
-    public Gender getGender(){
+
+    public Gender getGender() {
         return gender;
     }
-    public LocalDate getBirthDate(){
+
+    public LocalDate getBirthDate() {
         return birthDate;
     }
-    public LocalDate getDeathDate(){
+
+    public LocalDate getDeathDate() {
         return deathDate;
     }
-    public Human getMother(){
+
+    public Human getMother() {
         return mother;
     }
-    public Human getFather(){
+
+    public Human getFather() {
         return father;
     }
+
     public boolean addChild(Human child) {
         if (!children.contains(child)) {
             children.add(child);
@@ -60,6 +93,7 @@ public class Human implements GeneralTree<Human> {
         }
         return true;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -75,6 +109,7 @@ public class Human implements GeneralTree<Human> {
     public void setFather(Human father) {
         this.father = father;
     }
+
     public List<Human> getParents() {
         List<Human> list = new ArrayList<>(2);
         if (father != null) {
@@ -85,6 +120,7 @@ public class Human implements GeneralTree<Human> {
         }
         return list;
     }
+
     public List<Human> getChildren() {
         return children;
     }
@@ -92,13 +128,16 @@ public class Human implements GeneralTree<Human> {
     public void setChildren(List<Human> children) {
         this.children = children;
     }
+
     public String toString() {
         return getInfo();
     }
-        private int getPeriod(LocalDate birthDate, LocalDate deathDate) {
+
+    private int getPeriod(LocalDate birthDate, LocalDate deathDate) {
         Period diff = Period.between(birthDate, deathDate);
         return diff.getYears();
     }
+
     public int getAge() {
         if (deathDate == null) {
             return getPeriod(birthDate, LocalDate.now());
@@ -109,8 +148,7 @@ public class Human implements GeneralTree<Human> {
 
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-       
-
+        sb.append("id: ").append(id);
         sb.append(" имя: ");
         sb.append(name);
         sb.append(", пол: ");
@@ -164,8 +202,5 @@ public class Human implements GeneralTree<Human> {
         }
         return res.toString();
     }
-
-
-
 
 }

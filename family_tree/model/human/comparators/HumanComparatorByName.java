@@ -1,9 +1,8 @@
-package family_tree.comparators;
+package family_tree.model.human.comparators;
 
 import java.util.Comparator;
 
-// import family_tree.human.Human;
-import family_tree.tree.GeneralTree;
+import family_tree.model.tree.GeneralTree;
 
 public class HumanComparatorByName<G extends GeneralTree<G>> implements Comparator<G> {
 

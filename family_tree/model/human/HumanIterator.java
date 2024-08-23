@@ -1,12 +1,11 @@
-package family_tree.human;
+package family_tree.model.human;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import family_tree.tree.GeneralTree;
+import family_tree.model.tree.GeneralTree;
 
-public class HumanIterator<G extends GeneralTree<G>> implements Comparator<G> {
+public class HumanIterator<G extends GeneralTree<G>> implements Iterator<G> {
     private int curIndex;
     private List<G> humanList;
 
@@ -24,10 +23,5 @@ public class HumanIterator<G extends GeneralTree<G>> implements Comparator<G> {
         return humanList.get(curIndex++);
     }
 
-    @Override
-    public int compare(G o1, G o2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compare'");
-    }
 
 }

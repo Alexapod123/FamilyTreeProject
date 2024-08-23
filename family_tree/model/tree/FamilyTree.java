@@ -1,14 +1,13 @@
-package family_tree.tree;
+package family_tree.model.tree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import family_tree.comparators.HumanComparatorByAge;
-import family_tree.comparators.HumanComparatorByName;
-import family_tree.human.Human;
-import family_tree.human.HumanIterator;
+import family_tree.model.human.HumanIterator;
+import family_tree.model.human.comparators.HumanComparatorByAge;
+import family_tree.model.human.comparators.HumanComparatorByName;
 
 public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Iterable<E> {
     private final List<E> humanList;
@@ -57,6 +56,14 @@ public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Itera
         }
         return res;
     }
+    public E getById(int id){
+        for(E human : humanList){
+            if (human.getId() == id){
+                return human;
+            }
+        }
+        return null;
+    }
 
     public List<E> getTree() {
         return humanList;
@@ -66,14 +73,17 @@ public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Itera
         return humanList.toString();
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void sortByName() {
         humanList.sort(new HumanComparatorByName());
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void sortByAge() {
         humanList.sort(new HumanComparatorByAge());
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public Iterator<E> iterator() {
         return (Iterator<E>) new HumanIterator(humanList);

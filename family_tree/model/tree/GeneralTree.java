@@ -1,4 +1,4 @@
-package family_tree.tree;
+package family_tree.model.tree;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,6 +15,7 @@ public interface GeneralTree <G> extends Serializable{
     List <G> getChildren();
     List <G> getParents();
     int getAge();
+    int getId();
 
 
 }
