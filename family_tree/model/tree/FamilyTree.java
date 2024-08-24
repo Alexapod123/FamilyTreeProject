@@ -10,46 +10,20 @@ import family_tree.model.human.comparators.HumanComparatorByAge;
 import family_tree.model.human.comparators.HumanComparatorByName;
 
 public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Iterable<E> {
-    private final List<E> humanList;
-
-    public FamilyTree(List<E> humanList) {
-        this.humanList = humanList;
-    }
+    private List<E> familyTree;
 
     public FamilyTree() {
-        humanList = new ArrayList<>();
+        this.familyTree = new ArrayList<>();
     }
 
-    public boolean add(E human) {
-        if (human == null) {
-            return false;
-        }
-        if (!humanList.contains(human)) {
-            humanList.add(human);
+    public void add(E human) {
 
-            addToParents(human);
-            addToChildren(human);
-
-            return true;
-        }
-        return false;
-    }
-
-    private void addToParents(E human) {
-        for (E parent : human.getParents()) {
-            parent.addChild(human);
-        }
-    }
-
-    private void addToChildren(E human) {
-        for (E child : human.getChildren()) {
-            child.addParent(human);
-        }
+        this.familyTree.add(human);
     }
 
     public List<E> getByName(String name) {
         List<E> res = new ArrayList<>();
-        for (E human : humanList) {
+        for (E human :familyTree) {
             if (human.getName().equals(name)) {
                 res.add(human);
             }
@@ -57,7 +31,7 @@ public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Itera
         return res;
     }
     public E getById(int id){
-        for(E human : humanList){
+        for(E human :familyTree){
             if (human.getId() == id){
                 return human;
             }
@@ -66,26 +40,26 @@ public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Itera
     }
 
     public List<E> getTree() {
-        return humanList;
+        return familyTree;
     }
 
     public String toString() {
-        return humanList.toString();
+        return familyTree.toString();
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void sortByName() {
-        humanList.sort(new HumanComparatorByName());
+       familyTree.sort(new HumanComparatorByName());
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void sortByAge() {
-        humanList.sort(new HumanComparatorByAge());
+       familyTree.sort(new HumanComparatorByAge());
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public Iterator<E> iterator() {
-        return (Iterator<E>) new HumanIterator(humanList);
+        return (Iterator<E>) new HumanIterator(familyTree);
     }
 }

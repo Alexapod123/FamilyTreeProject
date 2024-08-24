@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
+
 
 import family_tree.model.human.Human;
 import family_tree.model.tree.FamilyTree;
@@ -22,13 +22,12 @@ public class FileHandler implements Write {
         }
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({  "rawtypes" })
     @Override
     public FamilyTree downloadFamilyTree(String nameFile) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nameFile));
-        List<Human> family = (List<Human>) ois.readObject();
         ois.close();
-        FamilyTree downloadTree = new FamilyTree(family);
+        FamilyTree downloadTree = new FamilyTree();
         return downloadTree;
 
     }
