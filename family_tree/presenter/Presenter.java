@@ -15,6 +15,12 @@ public class Presenter {
     private Service service;
     private FileHandler fh;
 
+    public Presenter(View view) {
+        this.view = view;
+        service = new Service();
+        fh = new FileHandler();
+    }
+
     public void addHuman(String name, Gender gender, LocalDate birthDate) {
         service.addHuman(name, gender, birthDate);
         getFamilyTreeInfo();

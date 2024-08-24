@@ -8,12 +8,6 @@ import family_tree.model.human.HumanBuilder;
 
 public class Service {
     private FamilyTree<Human> familyTree;
-
-    public Service(FamilyTree<Human> familyTree, HumanBuilder hb) {
-        this.familyTree = familyTree;
-        this.hb = hb;
-    }
-
     private HumanBuilder hb;
 
     public Service() {
@@ -37,6 +31,7 @@ public class Service {
     public boolean addChild(String human, String child) {
         return ((Human) familyTree.getByName(human)).addChild((Human) familyTree.getByName(child));
     }
+
     public boolean addChild(int idHuman, int idChild) {
         return familyTree.getById(idHuman).addChild(familyTree.getById(idChild));
     }
@@ -44,6 +39,7 @@ public class Service {
     public boolean addParent(String child, String parent) {
         return ((Human) familyTree.getByName(child)).addParent((Human) familyTree.getByName(parent));
     }
+
     public boolean addParent(int child, int parent) {
         return familyTree.getById(child).addParent(familyTree.getById(parent));
     }
