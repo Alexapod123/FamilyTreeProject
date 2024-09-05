@@ -9,12 +9,10 @@ import family_tree.view.View;
 public class Presenter {
     private View view;
     private Service service;
-    // private FileHandler fh;
 
     public Presenter(View view) {
         this.view = view;
         service = new Service();
-        // fh = new FileHandler();
     }
 
     public void addHuman(String name, Gender gender, LocalDate birthDate) {
@@ -52,19 +50,5 @@ public class Presenter {
         FamilyTree<Human> familyTree = service.getFamilyTree();
         view.printAnswer(familyTree.toString());
     }
-
-    // public boolean saveFamilyTree(String nameFile) throws IOException {
-    //     return fh.saveFamilyTree(nameFile, service.getFamilyTree());
-    // }
-
-    // @SuppressWarnings("unchecked")
-    // public boolean downloadFamilyTree(String nameFile) throws ClassNotFoundException, IOException {
-    //     fh.downloadFamilyTree(nameFile);
-    //     service.setFamilyTree(fh.downloadFamilyTree(nameFile));
-    //     if (service.getFamilyTree().equals(null))
-    //         return false;
-    //     else
-    //         return true;
-    // }
 
 }
