@@ -1,18 +1,22 @@
 package family_tree.model.tree;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import family_tree.model.human.Gender;
 import family_tree.model.human.Human;
 import family_tree.model.human.HumanBuilder;
+import family_tree.model.readAndDownload.FileHandler;
 
 public class Service {
     private FamilyTree<Human> familyTree;
     private HumanBuilder hb;
+    private FileHandler fh;
 
     public Service() {
         familyTree = new FamilyTree<>();
         hb = new HumanBuilder();
+        fh = new FileHandler();
     }
 
     public FamilyTree<Human> getFamilyTree() {
@@ -29,7 +33,7 @@ public class Service {
     }
 
     public boolean addChild(String human, String child) {
-        return ((Human) familyTree.getByName(human)).addChild((Human) familyTree.getByName(child));
+        return (familyTree.getByName(human)).addChild(familyTree.getByName(child));
     }
 
     public boolean addChild(int idHuman, int idChild) {
@@ -37,7 +41,7 @@ public class Service {
     }
 
     public boolean addParent(String child, String parent) {
-        return ((Human) familyTree.getByName(child)).addParent((Human) familyTree.getByName(parent));
+        return (familyTree.getByName(child)).addParent(familyTree.getByName(parent));
     }
 
     public boolean addParent(int child, int parent) {
@@ -50,6 +54,18 @@ public class Service {
 
     public void sortByAge() {
         familyTree.sortByAge();
+    }
+
+    public boolean saveFamilyTree(String nameFile) throws IOException {
+        return fh.saveFamilyTree(nameFile, familyTree);
+    }
+
+    public boolean downloadFamilyTree(String nameFile) throws ClassNotFoundException, IOException {
+        fh.downloadFamilyTree(nameFile);
+        if (familyTree.equals(null))
+            return false;
+        else
+            return true;
     }
 
 }

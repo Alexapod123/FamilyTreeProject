@@ -1,11 +1,7 @@
 package family_tree.presenter;
-
-import java.io.IOException;
 import java.time.LocalDate;
-
 import family_tree.model.human.Gender;
 import family_tree.model.human.Human;
-import family_tree.model.readAndDownload.FileHandler;
 import family_tree.model.tree.FamilyTree;
 import family_tree.model.tree.Service;
 import family_tree.view.View;
@@ -13,12 +9,12 @@ import family_tree.view.View;
 public class Presenter {
     private View view;
     private Service service;
-    private FileHandler fh;
+    // private FileHandler fh;
 
     public Presenter(View view) {
         this.view = view;
         service = new Service();
-        fh = new FileHandler();
+        // fh = new FileHandler();
     }
 
     public void addHuman(String name, Gender gender, LocalDate birthDate) {
@@ -57,18 +53,18 @@ public class Presenter {
         view.printAnswer(familyTree.toString());
     }
 
-    public boolean saveFamilyTree(String nameFile) throws IOException {
-        return fh.saveFamilyTree(nameFile, service.getFamilyTree());
-    }
+    // public boolean saveFamilyTree(String nameFile) throws IOException {
+    //     return fh.saveFamilyTree(nameFile, service.getFamilyTree());
+    // }
 
-    @SuppressWarnings("unchecked")
-    public boolean downloadFamilyTree(String nameFile) throws ClassNotFoundException, IOException {
-        fh.downloadFamilyTree(nameFile);
-        service.setFamilyTree(fh.downloadFamilyTree(nameFile));
-        if (service.getFamilyTree().equals(null))
-            return false;
-        else
-            return true;
-    }
+    // @SuppressWarnings("unchecked")
+    // public boolean downloadFamilyTree(String nameFile) throws ClassNotFoundException, IOException {
+    //     fh.downloadFamilyTree(nameFile);
+    //     service.setFamilyTree(fh.downloadFamilyTree(nameFile));
+    //     if (service.getFamilyTree().equals(null))
+    //         return false;
+    //     else
+    //         return true;
+    // }
 
 }

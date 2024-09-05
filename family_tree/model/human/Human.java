@@ -192,10 +192,10 @@ public class Human implements GeneralTree<Human> {
         StringBuilder res = new StringBuilder();
         res.append("дети: ");
         if (!children.isEmpty()) {
-            res.append(children.get(0).getName());
-            for (int i = 1; i < children.size(); i++) {
+            res.append(children.get(id));
+            for (int i = 0; i < children.size(); i++) {
                 res.append(", ");
-                res.append(children.get(i).getName());
+                res.append(children.get(i).name);
             }
         } else {
             res.append("отсутствуют");

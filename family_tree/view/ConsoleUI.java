@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import family_tree.model.human.Gender;
+import family_tree.model.tree.Service;
 import family_tree.presenter.Presenter;
 
 public class ConsoleUI implements View {
@@ -14,12 +15,14 @@ public class ConsoleUI implements View {
     private Presenter presenter;
     private boolean isWork;
     private MainMenu menu;
+    private Service service;
 
     public ConsoleUI() {
         scanner = new Scanner(System.in);
         presenter = new Presenter(this);
         isWork = true;
         menu = new MainMenu(this);
+        service = new Service();
 
     }
 
@@ -182,7 +185,7 @@ public class ConsoleUI implements View {
         String filename;
         printAnswer("Укажите имя файла");
         filename = scanner.nextLine();
-        if (presenter.saveFamilyTree(filename))
+        if (service.saveFamilyTree(filename))
             printAnswer("Файл " + filename + " сохранен");
         else
             printAnswer("Ошибка сохранения");
@@ -191,7 +194,7 @@ public class ConsoleUI implements View {
         String filename;
         printAnswer("Укажите имя файла");
         filename = scanner.nextLine();
-        if (presenter.downloadFamilyTree(filename))
+        if (service.downloadFamilyTree(filename))
             printAnswer("Файл " + filename + " успешно загружен");
         else
             printAnswer("Ошибка загрузки");

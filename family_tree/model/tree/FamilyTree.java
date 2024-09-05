@@ -21,14 +21,14 @@ public class FamilyTree<E extends GeneralTree<E>> implements Serializable, Itera
         this.familyTree.add(human);
     }
 
-    public List<E> getByName(String name) {
-        List<E> res = new ArrayList<>();
+    public E getByName(String name) {
         for (E human :familyTree) {
             if (human.getName().equals(name)) {
-                res.add(human);
+                return human;
             }
         }
-        return res;
+        return null;
+        
     }
     public E getById(int id){
         for(E human :familyTree){
